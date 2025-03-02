@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Планировщик задач</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Основной контейнер приложения -->
+  <div class="container">
+    <h1>📝 Планировщик задач</h1>
+
+    <!-- Прогресс выполнения задач -->
+    <div class="progress-container">
+      <p id="taskCounter">Выполнено: 0 из 0</p>
+      <progress id="progressBar" value="0" max="100"></progress>
+    </div>
+
+    <!-- Блок для ввода новой задачи -->
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="Введите задачу..." />
+      <button id="addTaskBtn">Добавить</button>
+    </div>
+
+    <!-- Контейнер списка задач -->
+    <div id="taskListContainer">
+      <p id="emptyMessage" class="empty-message hidden">Задачи отсутствуют</p>
+      <ul id="taskList"></ul>
+    </div>
+
+    <!-- Кнопка для очистки всех задач, изначально отключена -->
+    <button id="clearTasksBtn" disabled>Очистить список</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
