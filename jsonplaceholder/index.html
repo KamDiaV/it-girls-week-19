@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #posts-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .post h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .post p {
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Posts list</h1>
+    <div id="posts-container"></div>
+
+    <script>
+      function createPostMarkup(post) {
+          const postElement = document.createElement("div");
+          postElement.classList.add("post");
+  
+          const titleElement = document.createElement("h3");
+          titleElement.textContent = post.title;
+  
+          const bodyElement = document.createElement("p");
+          bodyElement.textContent = post.body;
+  
+          postElement.appendChild(titleElement);
+          postElement.appendChild(bodyElement);
+  
+          return postElement;
+      }
+  
+      function appendPostToContainer(container, postElement) {
+          container.appendChild(postElement);
+      }
+  
+      async function loadPosts() {
+          try {
+              const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=20");
+              if (!response.ok) {
+                  throw new Error("Ошибка загрузки постов");
+              }
+              const posts = await response.json();
+  
+              const container = document.getElementById("posts-container");
+  
+              posts.forEach((post) => {
+                  const postElement = createPostMarkup(post);
+                  appendPostToContainer(container, postElement);
+              });
+          } catch (error) {
+              console.error("Ошибка:", error);
+          }
+      }
+  
+      loadPosts();
+    </script>
+  
+</body>
+</html>
